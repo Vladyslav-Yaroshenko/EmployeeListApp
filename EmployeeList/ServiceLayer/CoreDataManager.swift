@@ -8,6 +8,9 @@
 import CoreData
 import UIKit
 
+// MARK: - CoreDataManagingProtocol
+
+/// Protocol defining the required methods for managing Core Data operations.
 protocol CoreDataManagingProtocol {
     func addEmployee(name: String,
                      lastName: String,
@@ -19,6 +22,9 @@ protocol CoreDataManagingProtocol {
     func fetchEmployees() -> [Employee]?
 }
 
+// MARK: - CoreDataManager
+
+/// Class responsible for managing Core Data operations.
 class CoreDataManager: CoreDataManagingProtocol {
     
     public static let shared = CoreDataManager()
@@ -63,6 +69,4 @@ class CoreDataManager: CoreDataManagingProtocol {
             return (try? context.fetch(fetchRequest) as? [Employee]) ?? []
         }
     }
-    
-    
 }
