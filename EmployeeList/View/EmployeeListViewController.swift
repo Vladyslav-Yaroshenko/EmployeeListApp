@@ -43,6 +43,7 @@ class EmployeeListViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .systemBlue
         tableView.layer.cornerRadius = 30
+        tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
