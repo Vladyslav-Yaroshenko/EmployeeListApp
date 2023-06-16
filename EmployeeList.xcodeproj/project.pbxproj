@@ -17,6 +17,7 @@
 		878B66CA2A3CAD92004551D2 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66C92A3CAD92004551D2 /* Department.swift */; };
 		878B66CC2A3CB0B3004551D2 /* EmloyeeListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66CB2A3CB0B3004551D2 /* EmloyeeListPresenter.swift */; };
 		878B66CF2A3CC286004551D2 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66CE2A3CC286004551D2 /* EmployeeListViewController.swift */; };
+		878B66D22A3CC3FE004551D2 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66D12A3CC3FE004551D2 /* ModuleBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		878B66C92A3CAD92004551D2 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		878B66CB2A3CB0B3004551D2 /* EmloyeeListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmloyeeListPresenter.swift; sourceTree = "<group>"; };
 		878B66CE2A3CC286004551D2 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
+		878B66D12A3CC3FE004551D2 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				878B66A82A3C9024004551D2 /* AppDelegate.swift */,
 				878B66AA2A3C9024004551D2 /* SceneDelegate.swift */,
 				878B66C92A3CAD92004551D2 /* Department.swift */,
+				878B66D12A3CC3FE004551D2 /* ModuleBuilder.swift */,
 				878B66D02A3CC289004551D2 /* View */,
 				878B66CD2A3CB0D4004551D2 /* Presenter */,
 				878B66BF2A3C904E004551D2 /* ServiceLayer */,
@@ -177,6 +180,7 @@
 				878B66B32A3C9024004551D2 /* EmployeeList.xcdatamodeld in Sources */,
 				878B66A92A3C9024004551D2 /* AppDelegate.swift in Sources */,
 				878B66C12A3C90CC004551D2 /* CoreDataManager.swift in Sources */,
+				878B66D22A3CC3FE004551D2 /* ModuleBuilder.swift in Sources */,
 				878B66CC2A3CB0B3004551D2 /* EmloyeeListPresenter.swift in Sources */,
 				878B66CF2A3CC286004551D2 /* EmployeeListViewController.swift in Sources */,
 				878B66CA2A3CAD92004551D2 /* Department.swift in Sources */,

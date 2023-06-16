@@ -7,13 +7,13 @@
 
 import Foundation
 
-
+///Protocol defining the required methods for managing view
 protocol EmployeeListViewProtocol: AnyObject {
     func reloadData()
     func showError()
 }
 
-
+///Protocol defining the required methods for managing presenter
 protocol EmployeeListPresenterProtocol: AnyObject {
     init(view: EmployeeListViewProtocol, dataManager: CoreDataManagingProtocol)
     

@@ -9,6 +9,8 @@ import UIKit
 
 class EmployeeListViewController: UIViewController {
 
+    var presenter: EmployeeListPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
