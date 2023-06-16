@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         let employeeListVC = ModuleBuilder.createEmployeeListModule()
         let navigationVC = UINavigationController(rootViewController: employeeListVC)
+        navigationVC.navigationBar.prefersLargeTitles = true
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }
