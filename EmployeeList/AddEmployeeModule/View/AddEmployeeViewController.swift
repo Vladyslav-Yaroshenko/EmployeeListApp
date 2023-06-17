@@ -18,6 +18,13 @@ class AddEmployeeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupUI()
+        activateConstraints()
+    }
+    
+    private func setupUI() {
+        scrollView = createScrollView()
+        
     }
     
     private func setupView() {
@@ -46,4 +53,18 @@ extension AddEmployeeViewController: AddEmployeeViewProtocol {
         
     }
     
+}
+
+extension AddEmployeeViewController {
+    
+    func activateConstraints() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
 }
