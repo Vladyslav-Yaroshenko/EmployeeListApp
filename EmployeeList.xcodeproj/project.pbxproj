@@ -19,6 +19,7 @@
 		878B66CF2A3CC286004551D2 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66CE2A3CC286004551D2 /* EmployeeListViewController.swift */; };
 		878B66D22A3CC3FE004551D2 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66D12A3CC3FE004551D2 /* ModuleBuilder.swift */; };
 		878B66D72A3DE24F004551D2 /* AddEmployeePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66D62A3DE24F004551D2 /* AddEmployeePresenter.swift */; };
+		878B66DA2A3DE6F1004551D2 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		878B66CE2A3CC286004551D2 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
 		878B66D12A3CC3FE004551D2 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		878B66D62A3DE24F004551D2 /* AddEmployeePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeePresenter.swift; sourceTree = "<group>"; };
+		878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +74,7 @@
 				878B66AA2A3C9024004551D2 /* SceneDelegate.swift */,
 				878B66C92A3CAD92004551D2 /* Department.swift */,
 				878B66D12A3CC3FE004551D2 /* ModuleBuilder.swift */,
-				878B66D82A3DE6CB004551D2 /* Presenter */,
+				878B66DC2A3DE70C004551D2 /* AddEmployeeModule */,
 				878B66D32A3DE0C9004551D2 /* EmloyeeListModule */,
 				878B66BF2A3C904E004551D2 /* ServiceLayer */,
 				878B66AE2A3C9024004551D2 /* Main.storyboard */,
@@ -123,6 +125,23 @@
 				878B66D62A3DE24F004551D2 /* AddEmployeePresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		878B66DB2A3DE6F6004551D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		878B66DC2A3DE70C004551D2 /* AddEmployeeModule */ = {
+			isa = PBXGroup;
+			children = (
+				878B66DB2A3DE6F6004551D2 /* View */,
+				878B66D82A3DE6CB004551D2 /* Presenter */,
+			);
+			path = AddEmployeeModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +219,7 @@
 				878B66A92A3C9024004551D2 /* AppDelegate.swift in Sources */,
 				878B66C12A3C90CC004551D2 /* CoreDataManager.swift in Sources */,
 				878B66D22A3CC3FE004551D2 /* ModuleBuilder.swift in Sources */,
+				878B66DA2A3DE6F1004551D2 /* AddEmployeeViewController.swift in Sources */,
 				878B66CC2A3CB0B3004551D2 /* EmloyeeListPresenter.swift in Sources */,
 				878B66CF2A3CC286004551D2 /* EmployeeListViewController.swift in Sources */,
 				878B66CA2A3CAD92004551D2 /* Department.swift in Sources */,
