@@ -30,9 +30,15 @@ class EmployeeListViewController: UIViewController {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add,
                                         target: self,
-                                        action: nil)
+                                        action: #selector(addButtonTapped))
         addButton.tintColor = .systemBlue
         self.navigationItem.rightBarButtonItem = addButton
+    }
+    
+    // Create new module and open VC to add new employee
+    @objc func addButtonTapped() {
+        let addEmployeeVC = ModuleBuilder.createAddEmployeeModule()
+        navigationController?.pushViewController(addEmployeeVC, animated: true)
     }
     
     // Create table view to display list of employees

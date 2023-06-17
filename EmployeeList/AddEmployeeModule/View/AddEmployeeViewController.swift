@@ -13,8 +13,6 @@ class AddEmployeeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
 
 }
