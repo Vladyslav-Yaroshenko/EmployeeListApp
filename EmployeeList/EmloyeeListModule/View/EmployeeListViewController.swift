@@ -17,17 +17,25 @@ class EmployeeListViewController: UIViewController {
         
         setupView()
         
+        
         tableView = creatTableView()
         
         setupConstraints()
         presenter.getEmployees()
     }
     
-    // Setup self view and navigation bar
+    //Change color for navigation bar
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.black
+        ]
+    }
+    
+    // Setup self view and navigation bar right item
     private func setupView() {
         view.backgroundColor = .white
-        title = "Employee List"
-        
+        navigationItem.title = "Employee List"
         let addButton = UIBarButtonItem(barButtonSystemItem: .add,
                                         target: self,
                                         action: #selector(addButtonTapped))

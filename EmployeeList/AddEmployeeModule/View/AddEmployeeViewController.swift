@@ -13,6 +13,16 @@ class AddEmployeeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+    
+    private func setupView() {
+        view.backgroundColor = .systemBlue
+        title = "Add a new employee"
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+        ]
+        navigationController?.navigationBar.tintColor = .white
     }
 
 }
