@@ -9,10 +9,19 @@ import UIKit
 
 class AddEmployeeViewController: UIViewController {
 
+    var presenter: AddEmployeePresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
     }
 
+}
+
+extension AddEmployeeViewController: AddEmployeeViewProtocol {
+    func addEmployee(employee: Employee) {
+        
+    }
+    
 }
