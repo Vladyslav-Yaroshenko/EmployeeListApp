@@ -27,9 +27,6 @@ class EmployeeListViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         title = "Employee List"
-        navigationController?.navigationBar.largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.systemBlue
-        ]
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add,
                                         target: self,
