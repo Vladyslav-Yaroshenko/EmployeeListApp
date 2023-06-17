@@ -18,6 +18,8 @@ class AddEmployeeViewController: UIViewController {
     var nameTextField: UITextField!
     var lastNameLabel: UILabel!
     var lastNameTextField: UITextField!
+    var salaryLabel: UILabel!
+    var salaryTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ class AddEmployeeViewController: UIViewController {
         nameTextField = createTextField(placeholder: "Please enter name")
         lastNameLabel = createLabel(text: "Last name", textColor: .black)
         lastNameTextField = createTextField(placeholder: "Please enter last name")
+        salaryLabel = createLabel(text: "Salary", textColor: .black)
+        salaryTextField = createTextField(placeholder: "Please enter salary")
+        salaryTextField.keyboardType = .numberPad
         
     }
     
