@@ -9,7 +9,11 @@ import UIKit
 
 class AddEmployeeViewController: UIViewController {
 
+    // Presenter
     var presenter: AddEmployeePresenterProtocol!
+    
+    // UI Elements
+    var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,16 @@ class AddEmployeeViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white,
         ]
         navigationController?.navigationBar.tintColor = .white
+    }
+    
+    // Create scrollView 
+    private func createScrollView() -> UIScrollView {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .white
+        scrollView.layer.cornerRadius = cornerRadiusForLargeUI
+        scrollView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.addSubview(scrollView)
+        return scrollView
     }
 
 }
