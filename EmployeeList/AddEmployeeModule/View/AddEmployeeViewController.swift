@@ -14,6 +14,7 @@ class AddEmployeeViewController: UIViewController {
     
     // UI Elements
     var scrollView: UIScrollView!
+    var nameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,10 @@ class AddEmployeeViewController: UIViewController {
     
     private func setupUI() {
         scrollView = createScrollView()
+        
+        nameLabel = createLabel(text: "Name", textColor: .black)
+        
+        
         
     }
     
@@ -45,6 +50,16 @@ class AddEmployeeViewController: UIViewController {
         view.addSubview(scrollView)
         return scrollView
     }
+    
+    // Create label
+    private func createLabel(text: String, textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = textColor
+        label.font = labelFont
+        scrollView.addSubview(label)
+        return label
+    }
 
 }
 
@@ -59,12 +74,16 @@ extension AddEmployeeViewController {
     
     func activateConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            nameLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: labelLeadingAnchorConstant),
+            nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: labelTopAnchorConstant)
         ])
     }
 }

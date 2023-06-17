@@ -9,9 +9,9 @@ import UIKit
 
 let labelFont = UIFont(name: "Geeza Pro", size: 15)
 
-let labelLeadingAnchorConstant = 26
+let labelLeadingAnchorConstant = CGFloat(26)
 
-let labelTopAnchorConstant = 16
+let labelTopAnchorConstant = CGFloat(16)
 
 let textFieldLeadingAnchorConstant = 16
 
