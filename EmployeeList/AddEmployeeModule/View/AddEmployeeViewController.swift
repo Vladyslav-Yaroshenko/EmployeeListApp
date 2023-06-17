@@ -60,9 +60,25 @@ class AddEmployeeViewController: UIViewController {
         scrollView.addSubview(label)
         return label
     }
+    
+    private func createTextField(placeholder: String) -> UITextField {
+        let tf = UITextField()
+        tf.placeholder = placeholder
+        let leftMarginView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: tf.frame.height))
+        tf.leftView = leftMarginView
+        tf.leftViewMode = .always
+        tf.layer.cornerRadius = cornerRadius
+        tf.layer.borderWidth = 1
+        tf.layer.borderColor = UIColor.systemBlue.cgColor
+        tf.delegate = self
+        
+        return tf
+    }
 
 }
 
+
+// MARK: - AddEmployeeViewProtocol
 extension AddEmployeeViewController: AddEmployeeViewProtocol {
     func addEmployee(employee: Employee) {
         
@@ -70,6 +86,7 @@ extension AddEmployeeViewController: AddEmployeeViewProtocol {
     
 }
 
+// MARK: - NSLayoutConstraint
 extension AddEmployeeViewController {
     
     func activateConstraints() {
@@ -86,4 +103,9 @@ extension AddEmployeeViewController {
             nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: labelTopAnchorConstant)
         ])
     }
+}
+
+// MARK: - UITextViewDelegate
+extension AddEmployeeViewController: UITextFieldDelegate {
+    
 }
