@@ -13,11 +13,12 @@ let labelLeadingAnchorConstant = CGFloat(26)
 
 let labelTopAnchorConstant = CGFloat(16)
 
-let textFieldLeadingAnchorConstant = 16
+let textFieldLeadingAnchorConstant = CGFloat(16)
 
-let textFieldTrailingAnchorConstant = -16
+let textFieldWidthAnchorConstant = CGFloat(-32)
 
-let textFieldHeightAnchorConstant = 48
+let textFieldHeightAnchorConstant = CGFloat(48)
+
 
 let saveButtonFont = UIFont(name: "Geeza Pro", size: 22)
 
