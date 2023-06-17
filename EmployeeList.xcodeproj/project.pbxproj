@@ -21,6 +21,7 @@
 		878B66D72A3DE24F004551D2 /* AddEmployeePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66D62A3DE24F004551D2 /* AddEmployeePresenter.swift */; };
 		878B66DA2A3DE6F1004551D2 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */; };
 		878B66DE2A3DEED4004551D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66DD2A3DEED4004551D2 /* Constants.swift */; };
+		878B66E02A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66DF2A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		878B66D62A3DE24F004551D2 /* AddEmployeePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeePresenter.swift; sourceTree = "<group>"; };
 		878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
 		878B66DD2A3DEED4004551D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		878B66DF2A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEmployeeViewController+LayoutConstraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */,
+				878B66E12A3E0188004551D2 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +148,14 @@
 				878B66D82A3DE6CB004551D2 /* Presenter */,
 			);
 			path = AddEmployeeModule;
+			sourceTree = "<group>";
+		};
+		878B66E12A3E0188004551D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				878B66DF2A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 				878B66A92A3C9024004551D2 /* AppDelegate.swift in Sources */,
 				878B66C12A3C90CC004551D2 /* CoreDataManager.swift in Sources */,
 				878B66D22A3CC3FE004551D2 /* ModuleBuilder.swift in Sources */,
+				878B66E02A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift in Sources */,
 				878B66DA2A3DE6F1004551D2 /* AddEmployeeViewController.swift in Sources */,
 				878B66CC2A3CB0B3004551D2 /* EmloyeeListPresenter.swift in Sources */,
 				878B66CF2A3CC286004551D2 /* EmployeeListViewController.swift in Sources */,

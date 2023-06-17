@@ -16,6 +16,8 @@ class AddEmployeeViewController: UIViewController {
     var scrollView: UIScrollView!
     var nameLabel: UILabel!
     var nameTextField: UITextField!
+    var lastNameLabel: UILabel!
+    var lastNameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +30,8 @@ class AddEmployeeViewController: UIViewController {
         scrollView = createScrollView()
         nameLabel = createLabel(text: "Name", textColor: .black)
         nameTextField = createTextField(placeholder: "Please enter name")
-        
-        
+        lastNameLabel = createLabel(text: "Last name", textColor: .black)
+        lastNameTextField = createTextField(placeholder: "Please enter last name")
         
     }
     
@@ -86,33 +88,6 @@ extension AddEmployeeViewController: AddEmployeeViewProtocol {
         
     }
     
-}
-
-// MARK: - NSLayoutConstraint
-extension AddEmployeeViewController {
-    
-    func activateConstraints() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            nameLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: labelLeadingAnchorConstant),
-            nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: labelTopAnchorConstant),
-            
-            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            nameTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
-                                                   constant: textFieldLeadingAnchorConstant),
-            nameTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor,
-                                                 constant: textFieldWidthAnchorConstant),
-            nameTextField.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant)
-        ])
-    }
 }
 
 // MARK: - UITextViewDelegate
