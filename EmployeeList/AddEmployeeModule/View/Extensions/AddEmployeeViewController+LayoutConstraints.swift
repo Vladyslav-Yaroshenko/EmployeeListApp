@@ -21,6 +21,8 @@ extension AddEmployeeViewController {
         genderPickerView.translatesAutoresizingMaskIntoConstraints = false
         birthdayLabel.translatesAutoresizingMaskIntoConstraints = false
         birthdayPicker.translatesAutoresizingMaskIntoConstraints = false
+        departmentLabel.translatesAutoresizingMaskIntoConstraints = false
+        depatmentMenu.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -89,6 +91,18 @@ extension AddEmployeeViewController {
             birthdayPicker.widthAnchor.constraint(equalTo: scrollView.widthAnchor,
                                                  constant: textFieldWidthAnchorConstant),
             birthdayPicker.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant),
+            
+            departmentLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                     constant: labelLeadingAnchorConstant),
+            departmentLabel.topAnchor.constraint(equalTo: birthdayPicker.bottomAnchor,
+                                                 constant: labelTopAnchorConstant),
+            
+            depatmentMenu.topAnchor.constraint(equalTo: departmentLabel.bottomAnchor),
+            depatmentMenu.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                   constant: textFieldLeadingAnchorConstant),
+            depatmentMenu.widthAnchor.constraint(equalTo: scrollView.widthAnchor,
+                                                 constant: textFieldWidthAnchorConstant),
+            depatmentMenu.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant)
         ])
     }
 }

@@ -25,6 +25,10 @@ class AddEmployeeViewController: UIViewController {
     var genderPickerView: PickerView!
     var birthdayLabel: UILabel!
     var birthdayPicker: UITextField!
+    var departmentLabel: UILabel!
+    var depatmentMenu: UITextField!
+    var saveButton: UIButton!
+    var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,8 @@ class AddEmployeeViewController: UIViewController {
         genderPickerView = createGenderView()
         birthdayLabel = createLabel(text: "Birthday", textColor: .black)
         birthdayPicker = createDatePicker()
+        departmentLabel = createLabel(text: "Department", textColor: .black)
+        depatmentMenu = createDepartmentMenu()
         
         
     }
@@ -102,9 +108,10 @@ class AddEmployeeViewController: UIViewController {
         return genderView
     }
     
+    // Create date picker with textField
     private func createDatePicker() -> UITextField {
        
-        //Create toolbar with done button
+        // Create toolbar with done button
         let toolbar = UIToolbar()
         toolbar.barStyle = .default
         toolbar.isTranslucent = true
@@ -139,12 +146,36 @@ class AddEmployeeViewController: UIViewController {
         birthdayPicker.text = formattedDate
         birthdayPicker.resignFirstResponder()
     }
+    
+    private func createDepartmentMenu() -> UITextField {
+        let textField = createTextField(placeholder: "Select department")
+        
+        let dropDownButton = UIButton(type: .system)
+        dropDownButton.setImage(UIImage(systemName: "chevron.down")?.withTintColor(.systemBlue), for: .normal)
+        dropDownButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+        
+        let menuChildren = Departament.allCases.map { devCase in
+            return UIAction(title: devCase.rawValue) { _ in
+                textField.text = devCase.rawValue
+            }
+        }
+        
+        textField.rightView = dropDownButton
+        textField.rightViewMode = .always
+    
+        dropDownButton.menu = UIMenu(children: menuChildren)
+        dropDownButton.showsMenuAsPrimaryAction = true
+    
+        return textField
+    }
+
 
 }
 
 
 // MARK: - AddEmployeeViewProtocol
 extension AddEmployeeViewController: AddEmployeeViewProtocol {
+    
     func addEmployee(employee: Employee) {
         
     }
