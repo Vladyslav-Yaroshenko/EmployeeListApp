@@ -52,6 +52,8 @@ class AddEmployeeViewController: UIViewController {
         birthdayPicker = createDatePicker()
         departmentLabel = createLabel(text: "Department", textColor: .black)
         depatmentMenu = createDepartmentMenu()
+        saveButton = createButton(title: "Save", titleColor: .white, backgroundColor: .systemBlue)
+        cancelButton = createButton(title: "Cancel", titleColor: .systemBlue, backgroundColor: .white)
         
         
     }
@@ -169,6 +171,15 @@ class AddEmployeeViewController: UIViewController {
         return textField
     }
 
+    private func createButton(title: String, titleColor: UIColor, backgroundColor: UIColor) -> UIButton {
+        let button = UIButton()
+        button.layer.cornerRadius = cornerRadius
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.backgroundColor = backgroundColor
+        scrollView.addSubview(button)
+        return button
+    }
 
 }
 

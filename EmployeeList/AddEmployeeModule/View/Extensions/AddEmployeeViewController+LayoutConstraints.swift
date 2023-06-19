@@ -23,6 +23,8 @@ extension AddEmployeeViewController {
         birthdayPicker.translatesAutoresizingMaskIntoConstraints = false
         departmentLabel.translatesAutoresizingMaskIntoConstraints = false
         depatmentMenu.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -102,7 +104,21 @@ extension AddEmployeeViewController {
                                                    constant: textFieldLeadingAnchorConstant),
             depatmentMenu.widthAnchor.constraint(equalTo: scrollView.widthAnchor,
                                                  constant: textFieldWidthAnchorConstant),
-            depatmentMenu.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant)
+            depatmentMenu.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant),
+            
+            saveButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                constant: textFieldLeadingAnchorConstant),
+            saveButton.topAnchor.constraint(equalTo: depatmentMenu.bottomAnchor,
+                                            constant: labelTopAnchorConstant),
+            saveButton.widthAnchor.constraint(equalTo: depatmentMenu.widthAnchor, multiplier: 0.5),
+            saveButton.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant),
+            
+            cancelButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor),
+            cancelButton.topAnchor.constraint(equalTo: saveButton.topAnchor),
+            cancelButton.widthAnchor.constraint(equalTo: depatmentMenu.widthAnchor, multiplier: 0.5),
+            cancelButton.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant)
+            
+            
         ])
     }
 }
