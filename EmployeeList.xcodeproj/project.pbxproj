@@ -22,6 +22,8 @@
 		878B66DA2A3DE6F1004551D2 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */; };
 		878B66DE2A3DEED4004551D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66DD2A3DEED4004551D2 /* Constants.swift */; };
 		878B66E02A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66DF2A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift */; };
+		878B66E32A3E0652004551D2 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66E22A3E0652004551D2 /* PickerView.swift */; };
+		878B66E52A3E0ED8004551D2 /* AddEmployeeViewController+PickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B66E42A3E0ED8004551D2 /* AddEmployeeViewController+PickerViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
 		878B66DD2A3DEED4004551D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		878B66DF2A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEmployeeViewController+LayoutConstraints.swift"; sourceTree = "<group>"; };
+		878B66E22A3E0652004551D2 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		878B66E42A3E0ED8004551D2 /* AddEmployeeViewController+PickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEmployeeViewController+PickerViewDataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				878B66D92A3DE6F1004551D2 /* AddEmployeeViewController.swift */,
+				878B66E22A3E0652004551D2 /* PickerView.swift */,
 				878B66E12A3E0188004551D2 /* Extensions */,
 			);
 			path = View;
@@ -154,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				878B66DF2A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift */,
+				878B66E42A3E0ED8004551D2 /* AddEmployeeViewController+PickerViewDataSource.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -237,10 +243,12 @@
 				878B66E02A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift in Sources */,
 				878B66DA2A3DE6F1004551D2 /* AddEmployeeViewController.swift in Sources */,
 				878B66CC2A3CB0B3004551D2 /* EmloyeeListPresenter.swift in Sources */,
+				878B66E52A3E0ED8004551D2 /* AddEmployeeViewController+PickerViewDataSource.swift in Sources */,
 				878B66CF2A3CC286004551D2 /* EmployeeListViewController.swift in Sources */,
 				878B66CA2A3CAD92004551D2 /* Department.swift in Sources */,
 				878B66D72A3DE24F004551D2 /* AddEmployeePresenter.swift in Sources */,
 				878B66AB2A3C9024004551D2 /* SceneDelegate.swift in Sources */,
+				878B66E32A3E0652004551D2 /* PickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

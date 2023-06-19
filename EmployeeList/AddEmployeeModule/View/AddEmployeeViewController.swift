@@ -20,6 +20,9 @@ class AddEmployeeViewController: UIViewController {
     var lastNameTextField: UITextField!
     var salaryLabel: UILabel!
     var salaryTextField: UITextField!
+    var genderLabel: UILabel!
+    let genders = ["Male", "Female", "Other"]
+    var genderPickerView: PickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,8 @@ class AddEmployeeViewController: UIViewController {
         salaryLabel = createLabel(text: "Salary", textColor: .black)
         salaryTextField = createTextField(placeholder: "Please enter salary")
         salaryTextField.keyboardType = .numberPad
+        genderLabel = createLabel(text: "Gender", textColor: .black)
+        genderPickerView = createGenderView()
         
     }
     
@@ -82,6 +87,13 @@ class AddEmployeeViewController: UIViewController {
         tf.delegate = self
         scrollView.addSubview(tf)
         return tf
+    }
+    
+    private func createGenderView() -> PickerView {
+        let genderView = PickerView()
+        genderView.dataSource = self
+        scrollView.addSubview(genderView)
+        return genderView
     }
 
 }
