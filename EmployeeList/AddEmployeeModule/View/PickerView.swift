@@ -36,7 +36,7 @@ class PickerView: UIControl {
     // MARK: - Variables
     private var buttons: [UIButton] = []
     private var stackView: UIStackView!
-    private var selectedItem: String?
+    public var selectedItem: String?
     
     // Override the layoutSubviews() method to update the stack view's frame
     override func layoutSubviews() {

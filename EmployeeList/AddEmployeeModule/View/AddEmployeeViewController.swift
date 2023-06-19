@@ -25,6 +25,7 @@ class AddEmployeeViewController: UIViewController {
     var genderPickerView: PickerView!
     var birthdayLabel: UILabel!
     var birthdayPicker: UITextField!
+    var selectedDate: Date?
     var departmentLabel: UILabel!
     var depatmentMenu: UITextField!
     var saveButton: UIButton!
@@ -144,6 +145,7 @@ class AddEmployeeViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "en_UK")
         let datePicker = birthdayPicker.inputView as? UIDatePicker
         guard let selectedDate = datePicker?.date else { return }
+        self.selectedDate = selectedDate
         let formattedDate = dateFormatter.string(from: selectedDate)
         birthdayPicker.text = formattedDate
         birthdayPicker.resignFirstResponder()
@@ -171,6 +173,7 @@ class AddEmployeeViewController: UIViewController {
         return textField
     }
 
+    // Create button
     private func createButton(title: String, titleColor: UIColor, backgroundColor: UIColor) -> UIButton {
         let button = UIButton()
         button.layer.cornerRadius = cornerRadius
@@ -180,6 +183,39 @@ class AddEmployeeViewController: UIViewController {
         scrollView.addSubview(button)
         return button
     }
+    
+    
+    
+    @objc private func saveButtonTapped() {
+        guard let name = nameTextField.text,
+              let lastName = lastNameTextField.text,
+              let salaryText = salaryTextField.text,
+              let salary = Float(salaryText),
+              let gender = genderPickerView.selectedItem,
+              let birthday = selectedDate,
+              let department = depatmentMenu.text,
+              !name.isEmpty,
+              !lastName.isEmpty,
+              !salaryText.isEmpty,
+              !gender.isEmpty,
+              !department.isEmpty
+        else {
+            showError()
+            return
+        }
+        presenter.addEmployee(name: name,
+                              lastName: lastName,
+                              salary: salary,
+                              gender: gender,
+                              birthday: birthday,
+                              department: department)
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
+    @objc private func cancelButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
 
 }
 
@@ -187,8 +223,13 @@ class AddEmployeeViewController: UIViewController {
 // MARK: - AddEmployeeViewProtocol
 extension AddEmployeeViewController: AddEmployeeViewProtocol {
     
-    func addEmployee(employee: Employee) {
-        
+    func showError() {
+        let alertVC = UIAlertController(title: "The employee is not saved",
+                                        message: "Fill out all fields to save",
+                                        preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        alertVC.addAction(okAction)
+        present(alertVC, animated: true)
     }
     
 }
