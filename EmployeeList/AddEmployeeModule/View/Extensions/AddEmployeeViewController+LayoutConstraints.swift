@@ -19,6 +19,8 @@ extension AddEmployeeViewController {
         salaryTextField.translatesAutoresizingMaskIntoConstraints = false
         genderLabel.translatesAutoresizingMaskIntoConstraints = false
         genderPickerView.translatesAutoresizingMaskIntoConstraints = false
+        birthdayLabel.translatesAutoresizingMaskIntoConstraints = false
+        birthdayPicker.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -75,6 +77,18 @@ extension AddEmployeeViewController {
                                                  constant: textFieldLeadingAnchorConstant),
             genderPickerView.topAnchor.constraint(equalTo: genderLabel.bottomAnchor,
                                              constant: labelTopAnchorConstant),
+            
+            birthdayLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                   constant: labelLeadingAnchorConstant),
+            birthdayLabel.topAnchor.constraint(equalTo: genderPickerView.bottomAnchor,
+                                               constant: labelTopAnchorConstant),
+            
+            birthdayPicker.topAnchor.constraint(equalTo: birthdayLabel.bottomAnchor),
+            birthdayPicker.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,
+                                                   constant: textFieldLeadingAnchorConstant),
+            birthdayPicker.widthAnchor.constraint(equalTo: scrollView.widthAnchor,
+                                                 constant: textFieldWidthAnchorConstant),
+            birthdayPicker.heightAnchor.constraint(equalToConstant: textFieldHeightAnchorConstant),
         ])
     }
 }

@@ -6,10 +6,13 @@
 //
 
 // MARK: - Description
-// Custom UI element for displaying a picker view with selectable buttons.
-// The `PickerView` class provides a customizable picker view interface with selectable buttons.
-// It allows users to choose an option by tapping on a button.
-// The picker view can be populated with data through the `PickerViewDataSource` protocol.
+/**
+ Custom UI element for displaying a picker view with selectable buttons.
+ 
+ The `PickerView` class provides a customizable picker view interface with selectable buttons. It allows users to choose an option by tapping on a button. The picker view can be populated with data through the `PickerViewDataSource` protocol.
+ 
+ This class follows the Bridge design pattern and utilizes the DataSource protocol. The Bridge pattern separates the abstraction (PickerView) from its implementation (Button), allowing for flexible composition of different button implementations without affecting the picker view's interface. The DataSource protocol provides a contract for populating the picker view with data, promoting separation of concerns and enabling different data sources to be used interchangeably.
+ */
 
 import Foundation
 import UIKit

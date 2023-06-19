@@ -23,6 +23,8 @@ class AddEmployeeViewController: UIViewController {
     var genderLabel: UILabel!
     let genders = ["Male", "Female", "Other"]
     var genderPickerView: PickerView!
+    var birthdayLabel: UILabel!
+    var birthdayPicker: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,9 @@ class AddEmployeeViewController: UIViewController {
         salaryTextField.keyboardType = .numberPad
         genderLabel = createLabel(text: "Gender", textColor: .black)
         genderPickerView = createGenderView()
+        birthdayLabel = createLabel(text: "Birthday", textColor: .black)
+        birthdayPicker = createDatePicker()
+        
         
     }
     
@@ -89,11 +94,50 @@ class AddEmployeeViewController: UIViewController {
         return tf
     }
     
+    // Create a custom view with genders buttons
     private func createGenderView() -> PickerView {
         let genderView = PickerView()
         genderView.dataSource = self
         scrollView.addSubview(genderView)
         return genderView
+    }
+    
+    private func createDatePicker() -> UITextField {
+       
+        //Create toolbar with done button
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.items = [flexibleSpace, doneButton]
+
+        // Crate date picker
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.maximumDate = Date()
+        datePicker.locale = Locale(identifier: "en_UK")
+
+        let textField = createTextField(placeholder: "Please enter birthday")
+        textField.inputAccessoryView = toolbar
+        textField.inputView = datePicker
+
+        scrollView.addSubview(textField)
+        return textField
+    }
+    
+    // Get date from datePicker and save string date to textField.text
+    @objc private func doneButtonPressed() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM yyyy"
+        dateFormatter.locale = Locale(identifier: "en_UK")
+        let datePicker = birthdayPicker.inputView as? UIDatePicker
+        guard let selectedDate = datePicker?.date else { return }
+        let formattedDate = dateFormatter.string(from: selectedDate)
+        birthdayPicker.text = formattedDate
+        birthdayPicker.resignFirstResponder()
     }
 
 }
