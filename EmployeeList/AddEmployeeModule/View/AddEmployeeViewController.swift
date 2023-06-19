@@ -54,8 +54,9 @@ class AddEmployeeViewController: UIViewController {
         departmentLabel = createLabel(text: "Department", textColor: .black)
         depatmentMenu = createDepartmentMenu()
         saveButton = createButton(title: "Save", titleColor: .white, backgroundColor: .systemBlue)
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         cancelButton = createButton(title: "Cancel", titleColor: .systemBlue, backgroundColor: .white)
-        
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
     }
     
