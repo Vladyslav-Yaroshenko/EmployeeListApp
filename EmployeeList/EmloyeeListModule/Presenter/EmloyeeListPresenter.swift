@@ -26,6 +26,7 @@ protocol EmployeeListPresenterProtocol: AnyObject {
     func getDeparmentCount() -> Int?
     func getEmployeesInDepartment(section: Int) -> [Employee]?
     func configureCellText(indexPath: IndexPath) -> String?
+    func getDepartmentName(from section: Int) -> String?
 }
 
 
@@ -122,4 +123,23 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
         return (employee.name ?? "") + " " + (employee.lastName ?? " ")
     }
     
+    
+    func getDepartmentName(from section: Int) -> String? {
+        var departmentKeys = [Departament.RawValue]()
+        
+        if isSearching {
+            if let filteredEmployees = filteredEmployees {
+                departmentKeys = Array(filteredEmployees.keys)
+                let department = departmentKeys[section]
+                return department
+            }
+        } else {
+            if let employees = employees {
+                departmentKeys = Array(employees.keys)
+                let department = departmentKeys[section]
+                return department
+            }
+        }
+        return nil
+    }
 }
