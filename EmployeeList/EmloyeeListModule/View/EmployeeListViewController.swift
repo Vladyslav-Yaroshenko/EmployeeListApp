@@ -12,6 +12,7 @@ class EmployeeListViewController: UIViewController {
     var presenter: EmployeeListPresenterProtocol!
     var tableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,9 +20,11 @@ class EmployeeListViewController: UIViewController {
         
         
         tableView = creatTableView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         setupConstraints()
         presenter.getEmployees()
+    
     }
     
     //Change color for navigation bar
@@ -80,7 +83,7 @@ class EmployeeListViewController: UIViewController {
 
 extension EmployeeListViewController: EmployeeListViewProtocol {
     func reloadData() {
-        
+        tableView.reloadData()
     }
     
     func showError() {
@@ -99,12 +102,23 @@ extension EmployeeListViewController: UITableViewDelegate {
 //MARK: - UITableViewDataSource
 
 extension EmployeeListViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter.getDeparmentCount() ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return presenter.getEmployeesInDepartment(section: section)?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let fullName = presenter.configureCellText(indexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        var config = cell.defaultContentConfiguration()
+        config.text = fullName
+        cell.contentConfiguration = config
+        return cell
     }
 
 }

@@ -12,6 +12,10 @@ protocol AddEmployeeViewProtocol: AnyObject {
     func showError()
 }
 
+protocol AddEmployeePresenterDelegate: AnyObject {
+    func didAddEmployee()
+}
+
 protocol AddEmployeePresenterProtocol: AnyObject {
     init(view: AddEmployeeViewProtocol, dataManager: CoreDataManagingProtocol)
     func addEmployee(name: String,
@@ -25,7 +29,9 @@ protocol AddEmployeePresenterProtocol: AnyObject {
 
 class AddEmployeePresenter: AddEmployeePresenterProtocol {
     
+    
     weak var view: AddEmployeeViewProtocol?
+    weak var delegate: AddEmployeePresenterDelegate?
     let dataManager: CoreDataManagingProtocol
     
     required init(view: AddEmployeeViewProtocol, dataManager: CoreDataManagingProtocol) {
@@ -40,7 +46,8 @@ class AddEmployeePresenter: AddEmployeePresenterProtocol {
                                 birthday: birthday,
                                 gender: gender,
                                 department: department)
+        delegate?.didAddEmployee()
     }
-    
+
 }
 

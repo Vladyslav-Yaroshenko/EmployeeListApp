@@ -16,11 +16,14 @@ protocol ModuleBuilderProtocol {
 
 class ModuleBuilder: ModuleBuilderProtocol {
 
+    private static var presenterDelegate: AddEmployeePresenterDelegate?
+    
     static func createEmployeeListModule() -> UIViewController {
         let view = EmployeeListViewController()
         let presenter = EmployeeListPresenter(view: view,
                                               dataManager: CoreDataManager.shared)
         view.presenter = presenter
+        presenterDelegate = presenter.delegate
         return view
     }
     
@@ -29,6 +32,7 @@ class ModuleBuilder: ModuleBuilderProtocol {
         let presenter = AddEmployeePresenter(view: view,
                                              dataManager: CoreDataManager.shared)
         view.presenter = presenter
+        presenter.delegate = presenterDelegate
         return view
     }
 }

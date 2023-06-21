@@ -23,10 +23,14 @@ protocol EmployeeListPresenterProtocol: AnyObject {
     func getEmployees()
     func calculateAverageSalary(employees: [Employee]) -> Float
     func filterEmployees(with searchText: String)
+    func getDeparmentCount() -> Int?
+    func getEmployeesInDepartment(section: Int) -> [Employee]?
+    func configureCellText(indexPath: IndexPath) -> String?
 }
 
 
-class EmployeeListPresenter: EmployeeListPresenterProtocol {
+// PRESENTER
+class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenterDelegate {
     
     // Variables
     weak var view: EmployeeListViewProtocol?
@@ -34,10 +38,13 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol {
     var employees: [Departament.RawValue : [Employee]]?
     var filteredEmployees: [Departament.RawValue : [Employee]]?
     var isSearching = false
+    weak var delegate: AddEmployeePresenterDelegate?
     
     required init(view: EmployeeListViewProtocol, dataManager: CoreDataManagingProtocol) {
         self.view = view
         self.dataManager = dataManager
+        delegate = self
+        
     }
     
     // Get all employees from core data
@@ -59,6 +66,11 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol {
         }
         employees = employees?.filter({ $0.value.count > 0 })
         self.view?.reloadData()
+        
+    }
+    
+    func didAddEmployee() {
+        getEmployees()
     }
     
     func calculateAverageSalary(employees: [Employee]) -> Float {
@@ -80,7 +92,34 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol {
             }.filter { !$0.value.isEmpty }
         }
     }
-
     
+    func getDeparmentCount() -> Int? {
+        return isSearching ? filteredEmployees?.count : employees?.count
+    }
+    
+    func getEmployeesInDepartment(section: Int) -> [Employee]? {
+        var departmentKeys = [Departament.RawValue]()
+        
+        if isSearching {
+            if let filteredEmployees = filteredEmployees {
+                departmentKeys = Array(filteredEmployees.keys)
+                let department = departmentKeys[section]
+                return filteredEmployees[department]
+            }
+        } else {
+            if let employees = employees {
+                departmentKeys = Array(employees.keys)
+                let department = departmentKeys[section]
+                return employees[department]
+            }
+        }
+        return nil
+    }
+    
+    func configureCellText(indexPath: IndexPath) -> String? {
+        guard let employees = getEmployeesInDepartment(section: indexPath.section) else { return nil }
+        let employee = employees[indexPath.row]
+        return (employee.name ?? "") + " " + (employee.lastName ?? " ")
+    }
     
 }

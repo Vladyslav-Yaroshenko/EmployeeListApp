@@ -57,7 +57,6 @@ class AddEmployeeViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         cancelButton = createButton(title: "Cancel", titleColor: .systemBlue, backgroundColor: .white)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        
     }
     
     private func setupView() {
