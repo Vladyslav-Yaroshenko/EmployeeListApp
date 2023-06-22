@@ -52,8 +52,7 @@ class AddEmployeeViewController: UIViewController {
         lastNameLabel = createLabel(text: "Last name", textColor: .black)
         lastNameTextField = createTextField(placeholder: "Please enter last name")
         salaryLabel = createLabel(text: "Salary", textColor: .black)
-        salaryTextField = createTextField(placeholder: "Please enter salary")
-        salaryTextField.keyboardType = .numberPad
+        salaryTextField = createSalaryTextField()
         genderLabel = createLabel(text: "Gender", textColor: .black)
         genderPickerView = createGenderView()
         birthdayLabel = createLabel(text: "Birthday", textColor: .black)
@@ -64,6 +63,26 @@ class AddEmployeeViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         cancelButton = createButton(title: "Cancel", titleColor: .systemBlue, backgroundColor: .white)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+    }
+    
+    private func createSalaryTextField() -> UITextField {
+        let tf = createTextField(placeholder: "Please enter salary")
+        tf.keyboardType = .decimalPad
+        
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(salaryDoneButtonPressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.items = [flexibleSpace, doneButton]
+        
+        tf.inputAccessoryView = toolbar
+        return tf
+    }
+    
+    @objc func salaryDoneButtonPressed() {
+        salaryTextField.resignFirstResponder()
     }
     
     private func setupView() {
@@ -243,5 +262,14 @@ extension AddEmployeeViewController: AddEmployeeViewProtocol {
 
 // MARK: - UITextViewDelegate
 extension AddEmployeeViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return textField == depatmentMenu ? false : true
+    }
     
 }
