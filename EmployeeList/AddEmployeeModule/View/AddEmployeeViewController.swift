@@ -38,6 +38,13 @@ class AddEmployeeViewController: UIViewController {
         activateConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // Set the contentSize of the scrollView to fit the subviews
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: cancelButton.frame.maxY)
+    }
+    
     private func setupUI() {
         scrollView = createScrollView()
         nameLabel = createLabel(text: "Name", textColor: .black)
