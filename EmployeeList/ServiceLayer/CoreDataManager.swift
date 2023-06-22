@@ -76,7 +76,15 @@ class CoreDataManager: CoreDataManagingProtocol {
         }
     }
     
+    // Remove an employee by id
     func removeEmployee(id: String) {
-        <#code#>
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        do {
+            guard let employees = try? context.fetch(fetchRequest) as? [Employee],
+                  let employee = employees.first(where: {$0.id == id})
+            else { return }
+            context.delete(employee)
+        }
+        appDelegate.saveContext()
     }
 }
