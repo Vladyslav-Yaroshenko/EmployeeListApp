@@ -92,6 +92,7 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
                 }
             }.filter { !$0.value.isEmpty }
         }
+        self.view?.reloadData()
     }
     
     func getDeparmentCount() -> Int? {

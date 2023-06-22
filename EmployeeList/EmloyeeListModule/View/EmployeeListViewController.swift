@@ -27,6 +27,17 @@ class EmployeeListViewController: UIViewController {
     
     }
     
+    private func setupSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        
+        searchController.searchBar.searchTextField.backgroundColor = .lightText
+        searchController.searchBar.tintColor = .black
+    
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+    
     //Change color for navigation bar
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.tintColor = .white
@@ -44,6 +55,7 @@ class EmployeeListViewController: UIViewController {
                                         action: #selector(addButtonTapped))
         addButton.tintColor = .systemBlue
         self.navigationItem.rightBarButtonItem = addButton
+        setupSearchController()
     }
     
     // Create new module and open VC to add new employee
@@ -172,4 +184,14 @@ extension EmployeeListViewController: UITableViewDataSource {
         return cell
     }
 
+}
+
+extension EmployeeListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter.filterEmployees(with: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.filterEmployees(with: "")
+    }
 }
