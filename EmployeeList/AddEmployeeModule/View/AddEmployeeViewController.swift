@@ -229,12 +229,14 @@ class AddEmployeeViewController: UIViewController {
             showError()
             return
         }
+        let id = UUID().uuidString
         presenter.addEmployee(name: name,
                               lastName: lastName,
                               salary: salary,
                               gender: gender,
                               birthday: birthday,
-                              department: department)
+                              department: department,
+                              id: id)
         navigationController?.popViewController(animated: true)
         
     }

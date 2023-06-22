@@ -23,7 +23,8 @@ protocol AddEmployeePresenterProtocol: AnyObject {
                      salary: Float,
                      gender: String,
                      birthday: Date,
-                     department: String)
+                     department: String,
+                     id: String)
 }
 
 
@@ -39,13 +40,14 @@ class AddEmployeePresenter: AddEmployeePresenterProtocol {
         self.dataManager = dataManager
     }
     
-    func addEmployee(name: String, lastName: String, salary: Float, gender: String, birthday: Date, department: String) {
+    func addEmployee(name: String, lastName: String, salary: Float, gender: String, birthday: Date, department: String, id: String) {
         dataManager.addEmployee(name: name,
                                 lastName: lastName,
                                 salary: salary,
                                 birthday: birthday,
                                 gender: gender,
-                                department: department)
+                                department: department,
+                                id: id)
         delegate?.didAddEmployee()
     }
 

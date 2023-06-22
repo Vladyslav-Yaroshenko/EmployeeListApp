@@ -17,15 +17,19 @@ protocol CoreDataManagingProtocol {
                      salary: Float,
                      birthday: Date,
                      gender: String,
-                     department: String)
+                     department: String,
+                     id: String)
     
     func fetchEmployees() -> [Employee]?
+    func removeEmployee(id: String)
 }
 
 // MARK: - CoreDataManager
 
 /// Class responsible for managing Core Data operations.
 class CoreDataManager: CoreDataManagingProtocol {
+    
+    
     
     public static let shared = CoreDataManager()
     private init() {}
@@ -46,7 +50,8 @@ class CoreDataManager: CoreDataManagingProtocol {
                             salary: Float,
                             birthday: Date,
                             gender: String,
-                            department: String) {
+                            department: String,
+                            id: String) {
         guard let employeeEntityDescription = NSEntityDescription.entity(forEntityName: entityName,
                                                                          in: context)
         else { return }
@@ -58,6 +63,7 @@ class CoreDataManager: CoreDataManagingProtocol {
         employee.birthday = birthday
         employee.gender = gender
         employee.department = department
+        employee.id = id
         
         appDelegate.saveContext()
     }
@@ -68,5 +74,9 @@ class CoreDataManager: CoreDataManagingProtocol {
         do {
             return (try? context.fetch(fetchRequest) as? [Employee]) ?? []
         }
+    }
+    
+    func removeEmployee(id: String) {
+        <#code#>
     }
 }
