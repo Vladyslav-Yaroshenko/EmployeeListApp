@@ -237,6 +237,7 @@ class AddEmployeeViewController: UIViewController {
                               birthday: birthday,
                               department: department,
                               id: id)
+        print("ID == \(id)")
         navigationController?.popViewController(animated: true)
         
     }

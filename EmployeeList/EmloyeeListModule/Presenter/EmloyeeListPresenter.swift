@@ -27,6 +27,10 @@ protocol EmployeeListPresenterProtocol: AnyObject {
     func getEmployeesInDepartment(section: Int) -> [Employee]?
     func configureCellText(indexPath: IndexPath) -> String?
     func getDepartmentName(from section: Int) -> String?
+    func removeAll()
+    func removeEmployee(id: String, indexPath: IndexPath)
+    func getEmployeeID(indexPath: IndexPath) -> String?
+    func removeSection(section: Int) 
 }
 
 
@@ -124,6 +128,12 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
         return (employee.name ?? "") + " " + (employee.lastName ?? " ")
     }
     
+    func getEmployeeID(indexPath: IndexPath) -> String? {
+        guard let employees = getEmployeesInDepartment(section: indexPath.section) else { return nil }
+        let employee = employees[indexPath.row]
+        return employee.id
+    }
+    
     
     func getDepartmentName(from section: Int) -> String? {
         var departmentKeys = [Departament.RawValue]()
@@ -143,4 +153,34 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
         }
         return nil
     }
+    
+    func removeAll() {
+        dataManager.deleteAllEmployees()
+    }
+    
+    func removeEmployee(id: String, indexPath: IndexPath) {
+        
+        if isSearching {
+            guard let department = getDepartmentName(from: indexPath.section) else { return }
+            self.filteredEmployees?[department]?.removeAll(where: {$0.id == id})
+            self.employees?[department]?.removeAll(where: {$0.id == id})
+            
+            
+        } else {
+            guard let department = getDepartmentName(from: indexPath.section) else { return }
+            self.employees?[department]?.removeAll(where: {$0.id == id})
+            
+        }
+        dataManager.removeEmployee(id: id)
+        
+    }
+    
+    func removeSection(section: Int) {
+        guard let section = getEmployeesInDepartment(section: section) else { return }
+        if section.isEmpty {
+            filteredEmployees = filteredEmployees?.filter({ $0.value.count > 0 })
+            employees = employees?.filter({ $0.value.count > 0 })
+        }
+    }
+
 }

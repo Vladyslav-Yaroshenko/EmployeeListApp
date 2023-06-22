@@ -22,6 +22,7 @@ protocol CoreDataManagingProtocol {
     
     func fetchEmployees() -> [Employee]?
     func removeEmployee(id: String)
+    func deleteAllEmployees()
 }
 
 // MARK: - CoreDataManager
