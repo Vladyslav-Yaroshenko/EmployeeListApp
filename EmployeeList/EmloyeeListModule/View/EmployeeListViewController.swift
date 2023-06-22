@@ -76,37 +76,6 @@ class EmployeeListViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-    private func createButton() -> UIButton {
-        let button = UIButton(type: .custom)
-        
-        if #available(iOS 15.0, *) {
-            button.configuration = createButtonConfiguration()
-        } else {
-            button.setImage(UIImage(systemName: "chevron.down")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
-            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-            button.contentHorizontalAlignment = .center
-            button.contentVerticalAlignment = .center
-        }
-        
-        button.setTitleColor(.black, for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.cornerRadius = 20
-        button.isEnabled = false
-        return button
-    }
-    
-    @available(iOS 15.0, *)
-    private func createButtonConfiguration() -> UIButton.Configuration {
-        var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "chevron.down")?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        configuration.imagePadding = 8
-        configuration.imagePlacement = .leading
-        configuration.titleAlignment = .center
-        return configuration
-    }
 
 }
 
@@ -129,49 +98,55 @@ extension EmployeeListViewController: EmployeeListViewProtocol {
 
 extension EmployeeListViewController: UITableViewDelegate {
     
+    /**
+     Creates a header view with a title label displaying the department name and an info button with an info circle icon.
+     The info button has a menu that shows the count of employees and the average salary for the department.
+     */
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       
+        // Create the header view
         let headerView = UIView()
         headerView.backgroundColor = tableView.backgroundColor
         
+        // Create the title label
         let titleLabel = UILabel()
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        let departmentName = presenter.getDepartmentName(from: section)
-        titleLabel.text = (departmentName ?? "")
+        let departmentName = presenter.getDepartmentName(from: section) ?? ""
+        titleLabel.text = departmentName
         
-        let infoButton = createButton()
-        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
-        infoButton.layer.borderColor = tableView.backgroundColor?.cgColor
-        infoButton.tag = section
+        // Create the info button
+        let infoButton = UIButton(type: .system)
+        infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
+        infoButton.tintColor = .white
         infoButton.translatesAutoresizingMaskIntoConstraints = false
         
-            
+        let employees = presenter.getEmployeesInDepartment(section: section) ?? []
+        let salary = presenter.calculateAverageSalary(employees: employees)
+        
+        // Create the UIActions for the menu
+        let employeesAction = UIAction(title: "Count of employees: \(employees.count)", handler: { _ in })
+        let salaryAction = UIAction(title: "Average salary: \(salary)", handler: { _ in })
+        
+        // Configure the menu for the info button
+        infoButton.menu = UIMenu(title: "\(departmentName) info",
+                                 children: [employeesAction, salaryAction])
+        infoButton.showsMenuAsPrimaryAction = true
+        
+        // Add the title label and info button to the header view
         headerView.addSubview(titleLabel)
         headerView.addSubview(infoButton)
         
-        
+        // Set up the constraints
         NSLayoutConstraint.activate([
-            
             titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 0),
             titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8),
             titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8),
             
             infoButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             infoButton.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8)
-            
-            
-//            countLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-//            countLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-//            countLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8)
         ])
-        
         return headerView
-    }
-    
-    @objc func infoButtonTapped(sender: UIButton) {
-        let headerView = tableView.headerView(forSection: sender.tag)
     }
 }
 
