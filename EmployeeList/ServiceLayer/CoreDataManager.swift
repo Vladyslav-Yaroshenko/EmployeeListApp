@@ -87,4 +87,14 @@ class CoreDataManager: CoreDataManagingProtocol {
         }
         appDelegate.saveContext()
     }
+    
+    // Delete all employees from core data
+    public func deleteAllEmployees() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        do {
+            let employees = try? context.fetch(fetchRequest) as? [Employee]
+            employees?.forEach { context.delete($0) }
+        }
+        appDelegate.saveContext()
+    }
 }
