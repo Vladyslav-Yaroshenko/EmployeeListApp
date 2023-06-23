@@ -27,6 +27,8 @@
 		878F3EA02A4476E4001643DC /* EmployeeListViewController + UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3E9F2A4476E3001643DC /* EmployeeListViewController + UISearchBarDelegate.swift */; };
 		878F3EA52A448403001643DC /* EmployeeListViewController + UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EA42A448403001643DC /* EmployeeListViewController + UITableViewDataSource.swift */; };
 		878F3EA72A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EA62A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift */; };
+		878F3EAB2A45A949001643DC /* EmployeeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EAA2A45A949001643DC /* EmployeeProfileViewController.swift */; };
+		878F3EAE2A45A96B001643DC /* EmployeeProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EAD2A45A96B001643DC /* EmployeeProfilePresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		878F3E9F2A4476E3001643DC /* EmployeeListViewController + UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewController + UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		878F3EA42A448403001643DC /* EmployeeListViewController + UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewController + UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		878F3EA62A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		878F3EAA2A45A949001643DC /* EmployeeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeProfileViewController.swift; sourceTree = "<group>"; };
+		878F3EAD2A45A96B001643DC /* EmployeeProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeProfilePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,14 +93,14 @@
 				878B66C92A3CAD92004551D2 /* Department.swift */,
 				878B66D12A3CC3FE004551D2 /* ModuleBuilder.swift */,
 				878B66DD2A3DEED4004551D2 /* Constants.swift */,
-				878B66DC2A3DE70C004551D2 /* AddEmployeeModule */,
+				878F3EB02A45A97E001643DC /* EmployeeProfileModule */,
 				878B66D32A3DE0C9004551D2 /* EmloyeeListModule */,
+				878B66DC2A3DE70C004551D2 /* AddEmployeeModule */,
 				878B66BF2A3C904E004551D2 /* ServiceLayer */,
 				878B66AE2A3C9024004551D2 /* Main.storyboard */,
 				878B66B42A3C9026004551D2 /* Assets.xcassets */,
 				878B66B62A3C9026004551D2 /* LaunchScreen.storyboard */,
 				878B66B92A3C9026004551D2 /* Info.plist */,
-				878B66B12A3C9024004551D2 /* EmployeeList.xcdatamodeld */,
 			);
 			path = EmployeeList;
 			sourceTree = "<group>";
@@ -129,6 +133,7 @@
 		878B66D32A3DE0C9004551D2 /* EmloyeeListModule */ = {
 			isa = PBXGroup;
 			children = (
+				878F3EA92A45A648001643DC /* Model */,
 				878B66D02A3CC289004551D2 /* View */,
 				878B66CD2A3CB0D4004551D2 /* Presenter */,
 			);
@@ -179,6 +184,39 @@
 				878F3EA62A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		878F3EA92A45A648001643DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				878B66B12A3C9024004551D2 /* EmployeeList.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		878F3EAC2A45A94D001643DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				878F3EAA2A45A949001643DC /* EmployeeProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		878F3EAF2A45A970001643DC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				878F3EAD2A45A96B001643DC /* EmployeeProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		878F3EB02A45A97E001643DC /* EmployeeProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				878F3EAF2A45A970001643DC /* Presenter */,
+				878F3EAC2A45A94D001643DC /* View */,
+			);
+			path = EmployeeProfileModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +296,7 @@
 				878B66C12A3C90CC004551D2 /* CoreDataManager.swift in Sources */,
 				878F3EA02A4476E4001643DC /* EmployeeListViewController + UISearchBarDelegate.swift in Sources */,
 				878F3EA52A448403001643DC /* EmployeeListViewController + UITableViewDataSource.swift in Sources */,
+				878F3EAB2A45A949001643DC /* EmployeeProfileViewController.swift in Sources */,
 				878B66D22A3CC3FE004551D2 /* ModuleBuilder.swift in Sources */,
 				878B66E02A3E0158004551D2 /* AddEmployeeViewController+LayoutConstraints.swift in Sources */,
 				878B66DA2A3DE6F1004551D2 /* AddEmployeeViewController.swift in Sources */,
@@ -265,6 +304,7 @@
 				878B66E52A3E0ED8004551D2 /* AddEmployeeViewController+PickerViewDataSource.swift in Sources */,
 				878B66CF2A3CC286004551D2 /* EmployeeListViewController.swift in Sources */,
 				878B66CA2A3CAD92004551D2 /* Department.swift in Sources */,
+				878F3EAE2A45A96B001643DC /* EmployeeProfilePresenter.swift in Sources */,
 				878B66D72A3DE24F004551D2 /* AddEmployeePresenter.swift in Sources */,
 				878F3EA72A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift in Sources */,
 				878B66AB2A3C9024004551D2 /* SceneDelegate.swift in Sources */,

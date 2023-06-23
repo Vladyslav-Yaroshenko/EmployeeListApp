@@ -31,6 +31,15 @@ extension EmployeeListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         var config = cell.defaultContentConfiguration()
         config.text = fullName
+        
+        // Create an image view and set its image
+        let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        imageView.tintColor = .black
+        imageView.contentMode = .scaleAspectFit
+        
+        // Set the image view as the accessoryView of the cell
+        cell.accessoryView = imageView
+        
         cell.contentConfiguration = config
         return cell
     }
