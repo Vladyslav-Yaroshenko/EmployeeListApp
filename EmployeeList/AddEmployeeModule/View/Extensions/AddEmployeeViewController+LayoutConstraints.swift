@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ Activates the layout constraints for the views in the AddEmployeeViewController.
+ */
 extension AddEmployeeViewController {
     
     func activateConstraints() {

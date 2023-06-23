@@ -7,6 +7,10 @@
 
 import UIKit
 
+/**
+ The AddEmployeeViewController class is a view controller responsible for displaying a form to add a new employee.
+ It is part of the EmployeeList project
+ */
 class AddEmployeeViewController: UIViewController {
 
     // Presenter
@@ -38,6 +42,7 @@ class AddEmployeeViewController: UIViewController {
         activateConstraints()
     }
     
+    /// Method is overridden to adjust the content size of the scrollView based on the subviews' layout.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -45,6 +50,7 @@ class AddEmployeeViewController: UIViewController {
         scrollView.contentSize = CGSize(width: view.bounds.width, height: cancelButton.frame.maxY)
     }
     
+    /// Defines private methods to set up and configure the UI elements, including creating labels, text fields, pickers, buttons, etc.
     private func setupUI() {
         scrollView = createScrollView()
         nameLabel = createLabel(text: "Name", textColor: .black)
@@ -65,6 +71,7 @@ class AddEmployeeViewController: UIViewController {
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
     }
     
+    /// Creates a text field specifically for salary input, including a decimal pad keyboard and a toolbar with a "Done" button.
     private func createSalaryTextField() -> UITextField {
         let tf = createTextField(placeholder: "Please enter salary")
         tf.keyboardType = .decimalPad
@@ -81,10 +88,12 @@ class AddEmployeeViewController: UIViewController {
         return tf
     }
     
+    /// Simply dismisses the keyboard when the user is done entering the salary value in the text field.
     @objc func salaryDoneButtonPressed() {
         salaryTextField.resignFirstResponder()
     }
     
+    /// Func sets up the overall view appearance, including the title and navigation bar settings.
     private func setupView() {
         view.backgroundColor = .systemBlue
         title = "Add a new employee"
@@ -94,7 +103,7 @@ class AddEmployeeViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
     }
     
-    // Create scrollView 
+    /// Creates a scroll view and adds it as a subview to the main view.
     private func createScrollView() -> UIScrollView {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
@@ -104,7 +113,7 @@ class AddEmployeeViewController: UIViewController {
         return scrollView
     }
     
-    // Create label
+    /// Creates a label with the given text and text color and adds it as a subview to the scroll view.
     private func createLabel(text: String, textColor: UIColor) -> UILabel {
         let label = UILabel()
         label.text = text
@@ -114,7 +123,7 @@ class AddEmployeeViewController: UIViewController {
         return label
     }
     
-    // Create text field
+    /// Creates a text field with the given placeholder text and adds it as a subview to the scroll view.
     private func createTextField(placeholder: String) -> UITextField {
         let tf = UITextField()
         tf.placeholder = placeholder
@@ -129,7 +138,7 @@ class AddEmployeeViewController: UIViewController {
         return tf
     }
     
-    // Create a custom view with genders buttons
+    /// Creates a custom view (PickerView) to display gender options.
     private func createGenderView() -> PickerView {
         let genderView = PickerView()
         genderView.dataSource = self
@@ -137,7 +146,7 @@ class AddEmployeeViewController: UIViewController {
         return genderView
     }
     
-    // Create date picker with textField
+    /// Creates a date picker with a text field for selecting the employee's birthday.
     private func createDatePicker() -> UITextField {
        
         // Create toolbar with done button
@@ -164,7 +173,8 @@ class AddEmployeeViewController: UIViewController {
         return textField
     }
     
-    // Get date from datePicker and save string date to textField.text
+    /// Retrieves the selected date from the date picker, formats it into a string, displays it in the text field,
+    /// and dismisses the date picker's keyboard.
     @objc private func doneButtonPressed() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMMM yyyy"
@@ -177,6 +187,7 @@ class AddEmployeeViewController: UIViewController {
         birthdayPicker.resignFirstResponder()
     }
     
+    /// Creates a text field with a drop-down menu for selecting the department.
     private func createDepartmentMenu() -> UITextField {
         let textField = createTextField(placeholder: "Select department")
         
@@ -199,7 +210,7 @@ class AddEmployeeViewController: UIViewController {
         return textField
     }
 
-    // Create button
+    /// Creates a button with the given title, title color, and background color.
     private func createButton(title: String, titleColor: UIColor, backgroundColor: UIColor) -> UIButton {
         let button = UIButton()
         button.layer.cornerRadius = cornerRadius
@@ -210,8 +221,9 @@ class AddEmployeeViewController: UIViewController {
         return button
     }
     
-    
-    
+    /// Method is called when the save button is tapped.
+    /// It retrieves the input values from the UI elements, validates them,
+    /// and then calls the presenter's addEmployee method to add the employee.
     @objc private func saveButtonTapped() {
         guard let name = nameTextField.text,
               let lastName = lastNameTextField.text,
@@ -229,7 +241,10 @@ class AddEmployeeViewController: UIViewController {
             showError()
             return
         }
+        
+        // Creates a unique identifier
         let id = UUID().uuidString
+        
         presenter.addEmployee(name: name,
                               lastName: lastName,
                               salary: salary,
@@ -237,21 +252,21 @@ class AddEmployeeViewController: UIViewController {
                               birthday: birthday,
                               department: department,
                               id: id)
-        print("ID == \(id)")
-        navigationController?.popViewController(animated: true)
         
+        navigationController?.popViewController(animated: true)
     }
     
+    /// Method is called when the cancel button is tapped. It simply pops the view controller from the navigation stack.
     @objc private func cancelButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
-
 }
 
 
 // MARK: - AddEmployeeViewProtocol
 extension AddEmployeeViewController: AddEmployeeViewProtocol {
     
+    /// Displays an error message if any required fields are not filled out when saving the employee.
     func showError() {
         let alertVC = UIAlertController(title: "The employee is not saved",
                                         message: "Fill out all fields to save",
@@ -260,7 +275,6 @@ extension AddEmployeeViewController: AddEmployeeViewProtocol {
         alertVC.addAction(okAction)
         present(alertVC, animated: true)
     }
-    
 }
 
 // MARK: - UITextViewDelegate

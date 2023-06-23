@@ -45,7 +45,7 @@ class CoreDataManager: CoreDataManagingProtocol {
     
     private let entityName = "Employee"
     
-    // Add new employee to core data
+    /// Add new employee to core data
     public func addEmployee(name: String,
                             lastName: String,
                             salary: Float,
@@ -69,7 +69,7 @@ class CoreDataManager: CoreDataManagingProtocol {
         appDelegate.saveContext()
     }
     
-    // Fetch all employees from core data
+    /// Fetch all employees from core data
     func fetchEmployees() -> [Employee]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         do {
@@ -77,7 +77,7 @@ class CoreDataManager: CoreDataManagingProtocol {
         }
     }
     
-    // Remove an employee by id
+    /// Remove an employee by id
     func removeEmployee(id: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         do {
@@ -89,7 +89,7 @@ class CoreDataManager: CoreDataManagingProtocol {
         appDelegate.saveContext()
     }
     
-    // Delete all employees from core data
+    /// Delete all employees from core data
     public func deleteAllEmployees() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         do {

@@ -7,30 +7,34 @@
 
 import UIKit
 
+/**
+ A view controller responsible for displaying a list of employees.
+  
+ The view controller conforms to the `EmployeeListViewProtocol` to handle data updates and error handling.
+ The view controller communicates with the presenter through the `presenter` property.
+ It contains a `tableView` to display the list of employees and an `emptyListView` to show a message when the list is empty.
+ */
 class EmployeeListViewController: UIViewController {
 
+    // MARK: - Variables
     var presenter: EmployeeListPresenterProtocol!
     var tableView: UITableView!
     var emptyListView: UIView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-        
-        
         tableView = creatTableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
         emptyListView = createEmptyListView()
-        
         setupConstraints()
         presenter.getEmployees()
-        
-      
     }
     
+    /**
+     Creates and configures a view to display an empty list message with an image and label.
+     The view is added as a subview to the table view.
+     */
     private func createEmptyListView() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +54,6 @@ class EmployeeListViewController: UIViewController {
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -61,13 +64,14 @@ class EmployeeListViewController: UIViewController {
             bottomLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
             bottomLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
         ])
         tableView.addSubview(view)
         return view
     }
     
-    // UISearchController
+    /**
+     Sets up a search controller in the navigation bar for filtering the employee list.
+     */
     private func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
@@ -79,7 +83,9 @@ class EmployeeListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = true
     }
     
-    //Change color for navigation bar
+    /**
+     Overrides the viewWillAppear method to customize the appearance of the navigation bar.
+     */
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.largeTitleTextAttributes = [
@@ -87,7 +93,9 @@ class EmployeeListViewController: UIViewController {
         ]
     }
     
-    // Setup self view and navigation bar right item
+    /**
+     Sets up the view and navigation bar for the EmployeeListViewController.
+     */
     private func setupView() {
         view.backgroundColor = .white
         navigationItem.title = "Employee List"
@@ -99,13 +107,19 @@ class EmployeeListViewController: UIViewController {
         setupSearchController()
     }
     
-    // Create new module and open VC to add new employee
+    /**
+    Called when the "Add" button in the navigation bar is tapped.
+    Creates a new instance of the AddEmployeeViewController using the ModuleBuilder.
+    Pushes the AddEmployeeViewController onto the navigation stack to open the screen for adding a new employee.
+     */
     @objc func addButtonTapped() {
         let addEmployeeVC = ModuleBuilder.createAddEmployeeModule()
         navigationController?.pushViewController(addEmployeeVC, animated: true)
     }
     
-    // Create table view to display list of employees
+    /**
+     Creates and configures a UITableView to display the list of employees.
+     */
     private func creatTableView() -> UITableView {
         let tableView = UITableView(frame: CGRect(), style: .insetGrouped)
         
@@ -115,10 +129,13 @@ class EmployeeListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         return tableView
     }
     
-    // Constraints for UI elements
+    /**
+     Sets up the constraints for the UI elements in the EmployeeListViewController.
+     */
     private func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         emptyListView.translatesAutoresizingMaskIntoConstraints = false
