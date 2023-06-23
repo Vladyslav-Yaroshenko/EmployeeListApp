@@ -11,6 +11,7 @@ class EmployeeListViewController: UIViewController {
 
     var presenter: EmployeeListPresenterProtocol!
     var tableView: UITableView!
+    var emptyListView: UIView!
     
     
     override func viewDidLoad() {
@@ -22,11 +23,51 @@ class EmployeeListViewController: UIViewController {
         tableView = creatTableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        emptyListView = createEmptyListView()
+        
         setupConstraints()
         presenter.getEmployees()
-    
+        
+      
     }
     
+    private func createEmptyListView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let bottomLabel = UILabel()
+        bottomLabel.textColor = .white
+        bottomLabel.text = "List is empty"
+        bottomLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        bottomLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bottomLabel)
+        
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        imageView.image = UIImage(systemName: "list.bullet.clipboard")?.withTintColor(.white)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.widthAnchor.constraint(equalTo: bottomLabel.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: bottomLabel.widthAnchor),
+            
+            bottomLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            bottomLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
+        ])
+        tableView.addSubview(view)
+        return view
+    }
+    
+    // UISearchController
     private func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
@@ -80,15 +121,18 @@ class EmployeeListViewController: UIViewController {
     // Constraints for UI elements
     private func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        emptyListView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emptyListView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            emptyListView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
         ])
     }
-
 }
 
 
@@ -102,117 +146,6 @@ extension EmployeeListViewController: EmployeeListViewProtocol {
     func showError() {
         
     }
-    
-    
-}
-
-//MARK: - UITableViewDelegate
-
-extension EmployeeListViewController: UITableViewDelegate {
-    
-    /**
-     Creates a header view with a title label displaying the department name and an info button with an info circle icon.
-     The info button has a menu that shows the count of employees and the average salary for the department.
-     */
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // Create the header view
-        let headerView = UIView()
-        headerView.backgroundColor = tableView.backgroundColor
-        
-        // Create the title label
-        let titleLabel = UILabel()
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        let departmentName = presenter.getDepartmentName(from: section) ?? ""
-        titleLabel.text = departmentName
-        
-        // Create the info button
-        let infoButton = UIButton(type: .system)
-        infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
-        infoButton.tintColor = .white
-        infoButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        let employees = presenter.getEmployeesInDepartment(section: section) ?? []
-        let salary = presenter.calculateAverageSalary(employees: employees)
-        
-        // Create the UIActions for the menu
-        let employeesAction = UIAction(title: "Count of employees: \(employees.count)", handler: { _ in })
-        let salaryAction = UIAction(title: "Average salary: \(salary)", handler: { _ in })
-        
-        // Configure the menu for the info button
-        infoButton.menu = UIMenu(title: "\(departmentName) info",
-                                 children: [employeesAction, salaryAction])
-        infoButton.showsMenuAsPrimaryAction = true
-        
-        // Add the title label and info button to the header view
-        headerView.addSubview(titleLabel)
-        headerView.addSubview(infoButton)
-        
-        // Set up the constraints
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 0),
-            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8),
-            titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8),
-            
-            infoButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            infoButton.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8)
-        ])
-        return headerView
-    }
-    
-    
-}
-
-//MARK: - UITableViewDataSource
-
-extension EmployeeListViewController: UITableViewDataSource {
-    
-    // Sections
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter.getDeparmentCount() ?? 0
-    }
-    
-    // Rows
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.getEmployeesInDepartment(section: section)?.count ?? 0
-    }
-    
-    // Cell
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let fullName = presenter.configureCellText(indexPath: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        var config = cell.defaultContentConfiguration()
-        config.text = fullName
-        cell.contentConfiguration = config
-        return cell
-    }
-    
-    // Editing style
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    // Remove rows and sections
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            guard let id = presenter.getEmployeeID(indexPath: indexPath) else { return }
-            
-            presenter.removeEmployee(id: id, indexPath: indexPath)
-            if presenter.getEmployeesInDepartment(section: indexPath.section)?.count == 0 {
-                presenter.removeSection(section: indexPath.section)
-                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
-            } else {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            
-        }
-    }
-    
-    
-    
-
 }
 
 
