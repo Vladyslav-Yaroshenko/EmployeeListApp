@@ -41,7 +41,7 @@ To run the Employee List application on your local machine, follow these steps:
 
 ## Screenshots
 
-![photo_2023-06-26 15 33 17](https://github.com/Vladyslav-Yaroshenko/EmployeeListApp/assets/106316686/97984659-5bd4-471e-8406-ab127e921072)
+![photo_2023-06-26 19 02 22](https://github.com/Vladyslav-Yaroshenko/EmployeeListApp/assets/106316686/7a046258-da06-461a-89bd-f509b793e2de)
 
 ## Credits
 
