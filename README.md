@@ -45,7 +45,7 @@ To run the Employee List application on your local machine, follow these steps:
 
 ## Credits
 
-The Employee List application is developed and maintained by [Your Name]. If you have any questions or suggestions, please feel free to reach out.
+The Employee List application is developed and maintained by Vladyslav Yaroshenko. If you have any questions or suggestions, please feel free to reach out.
 
 ## License
 
