@@ -47,7 +47,7 @@ class AddEmployeeViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         // Set the contentSize of the scrollView to fit the subviews
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: cancelButton.frame.maxY)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: cancelButton.frame.maxY + 16)
     }
     
     /// Defines private methods to set up and configure the UI elements, including creating labels, text fields, pickers, buttons, etc.

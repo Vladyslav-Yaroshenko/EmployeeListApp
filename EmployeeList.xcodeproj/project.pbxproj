@@ -29,6 +29,7 @@
 		878F3EA72A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EA62A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift */; };
 		878F3EAB2A45A949001643DC /* EmployeeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EAA2A45A949001643DC /* EmployeeProfileViewController.swift */; };
 		878F3EAE2A45A96B001643DC /* EmployeeProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EAD2A45A96B001643DC /* EmployeeProfilePresenter.swift */; };
+		878F3EB22A49A31F001643DC /* EmployeeProfileViewController + NSLayoutConstrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F3EB12A49A31F001643DC /* EmployeeProfileViewController + NSLayoutConstrants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		878F3EA62A44844D001643DC /* EmployeeListViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		878F3EAA2A45A949001643DC /* EmployeeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeProfileViewController.swift; sourceTree = "<group>"; };
 		878F3EAD2A45A96B001643DC /* EmployeeProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeProfilePresenter.swift; sourceTree = "<group>"; };
+		878F3EB12A49A31F001643DC /* EmployeeProfileViewController + NSLayoutConstrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeProfileViewController + NSLayoutConstrants.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				878F3EAA2A45A949001643DC /* EmployeeProfileViewController.swift */,
+				878F3EB32A49A3F8001643DC /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,6 +220,14 @@
 				878F3EAC2A45A94D001643DC /* View */,
 			);
 			path = EmployeeProfileModule;
+			sourceTree = "<group>";
+		};
+		878F3EB32A49A3F8001643DC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				878F3EB12A49A31F001643DC /* EmployeeProfileViewController + NSLayoutConstrants.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +305,7 @@
 				878B66DE2A3DEED4004551D2 /* Constants.swift in Sources */,
 				878B66A92A3C9024004551D2 /* AppDelegate.swift in Sources */,
 				878B66C12A3C90CC004551D2 /* CoreDataManager.swift in Sources */,
+				878F3EB22A49A31F001643DC /* EmployeeProfileViewController + NSLayoutConstrants.swift in Sources */,
 				878F3EA02A4476E4001643DC /* EmployeeListViewController + UISearchBarDelegate.swift in Sources */,
 				878F3EA52A448403001643DC /* EmployeeListViewController + UITableViewDataSource.swift in Sources */,
 				878F3EAB2A45A949001643DC /* EmployeeProfileViewController.swift in Sources */,
