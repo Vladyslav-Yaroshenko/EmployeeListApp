@@ -8,27 +8,25 @@
 import Foundation
 
 protocol EmployeeProfileViewProtocol: AnyObject {
-    func setupEmployeeInfo()
+    func setupEmployeeInfo(employee: Employee?)
 }
 
 protocol EmployeeProfilePresenterProtocol: AnyObject {
-    init(view: EmployeeProfileViewProtocol, dataManager: CoreDataManagingProtocol)
+    init(view: EmployeeProfileViewProtocol, employee: Employee)
     func setEmployee()
 }
 
 class EmployeeProfilePresenter: EmployeeProfilePresenterProtocol {
     
     weak var view: EmployeeProfileViewProtocol?
-    var dataManager: CoreDataManagingProtocol!
+    var employee: Employee?
     
-    required init(view: EmployeeProfileViewProtocol, dataManager: CoreDataManagingProtocol) {
+    required init(view: EmployeeProfileViewProtocol, employee: Employee) {
         self.view = view
-        self.dataManager = dataManager
+        self.employee = employee
     }
     
     func setEmployee() {
-        <#code#>
+        self.view?.setupEmployeeInfo(employee: employee)
     }
-    
-    
 }

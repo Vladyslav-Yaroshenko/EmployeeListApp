@@ -15,7 +15,7 @@ import UIKit
 protocol ModuleBuilderProtocol {
     static func createEmployeeListModule() -> UIViewController
     static func createAddEmployeeModule() -> UIViewController
-    static func createEmployeeProfileModule() -> UIViewController
+    static func createEmployeeProfileModule(employee: Employee) -> UIViewController
 }
 
 /**
@@ -60,8 +60,10 @@ class ModuleBuilder: ModuleBuilderProtocol {
         return view
     }
     
-    static func createEmployeeProfileModule() -> UIViewController {
+    static func createEmployeeProfileModule(employee: Employee) -> UIViewController {
         let view = EmployeeProfileViewController()
-        let presenter
+        let presenter = EmployeeProfilePresenter(view: view, employee: employee)
+        view.presenter = presenter
+        return view
     }
 }

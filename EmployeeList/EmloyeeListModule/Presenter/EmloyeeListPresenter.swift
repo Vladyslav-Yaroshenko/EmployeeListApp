@@ -24,17 +24,17 @@ protocol EmployeeListPresenterProtocol: AnyObject {
     var employees: [Departament.RawValue: [Employee]]? { get set }
     var filteredEmployees: [Departament.RawValue: [Employee]]? { get set }
     
-    func getEmployees()
+    func getAllEmployees()
     func calculateAverageSalary(employees: [Employee]) -> Float
     func filterEmployees(with searchText: String)
     func getDeparmentCount() -> Int?
     func getEmployeesInDepartment(section: Int) -> [Employee]?
     func configureCellText(indexPath: IndexPath) -> String?
     func getDepartmentName(from section: Int) -> String?
-    func removeAll()
     func removeEmployee(id: String, indexPath: IndexPath)
     func getEmployeeID(indexPath: IndexPath) -> String?
-    func removeSection(section: Int) 
+    func removeSection(section: Int)
+    func getEmployee(indexPath: IndexPath) -> Employee?
 }
 
 
@@ -64,7 +64,7 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
     
     /// Retrieves all employees from the data manager and organizes them into departments.
     /// It updates the employees dictionary and notifies the view to reload the data.
-    func getEmployees() {
+    func getAllEmployees() {
         guard let allEmployees = dataManager.fetchEmployees() else {
             view?.showError()
             return
@@ -88,7 +88,7 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
     ///Delegate method called when a new employee is added through the AddEmployeePresenter.
     ///It triggers the getEmployees() method to update the employee list.
     func didAddEmployee() {
-        getEmployees()
+        getAllEmployees()
     }
     
     /// Calculates the average salary for a given list of employees.
@@ -174,11 +174,6 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
         return nil
     }
     
-    // TODO: - Fix
-    func removeAll() {
-        dataManager.deleteAllEmployees()
-    }
-    
     /// Removes an employee with the specified ID from the employee list.
     /// It updates the employees and filteredEmployees dictionaries and removes the employee from the data manager.
     func removeEmployee(id: String, indexPath: IndexPath) {
@@ -207,5 +202,11 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol, AddEmployeePresenter
             employees = employees?.filter({ $0.value.count > 0 })
         }
     }
-
+    
+    /// Get an Employee object based on the provided IndexPath by fetching the list of employees in the corresponding section
+    /// and accessing the employee at the given row within that section.
+    func getEmployee(indexPath: IndexPath) -> Employee? {
+        guard let employees = getEmployeesInDepartment(section: indexPath.section) else { return nil }
+        return employees[indexPath.row]
+    }
 }

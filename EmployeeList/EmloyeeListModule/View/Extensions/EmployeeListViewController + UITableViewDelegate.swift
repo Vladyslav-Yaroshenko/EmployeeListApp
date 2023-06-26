@@ -62,4 +62,14 @@ extension EmployeeListViewController: UITableViewDelegate {
         ])
         return headerView
     }
+    
+    /**
+     When a table view cell is selected, the function retrieves the corresponding employee, creates an employee profile view controller,
+     and navigates to that view controller to display the employee's profile.
+     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let employee = presenter.getEmployee(indexPath: indexPath) else { return }
+        let profileVC = ModuleBuilder.createEmployeeProfileModule(employee: employee)
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
 }

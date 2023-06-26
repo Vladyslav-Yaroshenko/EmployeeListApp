@@ -28,7 +28,7 @@ class EmployeeListViewController: UIViewController {
         tableView = creatTableView()
         emptyListView = createEmptyListView()
         setupConstraints()
-        presenter.getEmployees()
+        presenter.getAllEmployees()
     }
     
     /**
